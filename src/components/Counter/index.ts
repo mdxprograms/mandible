@@ -1,9 +1,10 @@
 import { DOM } from "@wallerbuilt/mantle";
 
-import { IncBtn, DecBtn, TimerBtn, ClearBtn } from './Button'
+import { IncBtn, DecBtn } from './Button'
 import CounterValue from "./CounterValue"
+import Timer from "./Timer"
 
-import { counterStyle, timerStyle } from "./styles"
+import { counterStyle } from "./styles"
 
 const { div } = DOM
 
@@ -13,7 +14,7 @@ const Counter = (count: number) =>
       IncBtn,
       CounterValue(count),
       DecBtn,
-      timerStyle(div({}, [TimerBtn, ClearBtn])),
+      Timer,
     ])
   );
 
