@@ -1,10 +1,9 @@
-import { DOM, mount } from "@wallerbuilt/mantle";
-import Counter from "./components/Counter"
+import { DOM, mount, setStyle } from "@wallerbuilt/mantle";
+import { flexCenterWrap } from "./components/baseStyles";
+import Router, { routes } from "./router"
 
-const { main, section, h2 } = DOM
+const { main } = DOM
 
-const Intro = section({}, h2({}, "Mandible Examples"));
+const App = setStyle([...flexCenterWrap])(main({}, routes.counter));
 
-const App = main({}, [Intro, Counter(0)]);
-
-mount(document.getElementById("app"), App)
+mount(document.getElementById("app"), Router(App))
