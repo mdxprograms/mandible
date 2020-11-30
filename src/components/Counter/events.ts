@@ -23,26 +23,28 @@ const counterColor = (count: number) => {
 
 let counterInterval;
 
+const updateCount = (count: number) => compose(setText(`${count}`), counterColor(count))
+
 export const counterValueEvents = (count: number) => ({
   when: {
     "counter:decrement"(self: HTMLHeadingElement) {
       --count;
-      compose(setText(`${count}`), counterColor(count))(self);
+      updateCount(count)(self);
     },
     "counter:increment"(self: HTMLHeadingElement) {
       ++count;
-      compose(setText(`${count}`), counterColor(count))(self);
+      updateCount(count)(self)
     },
     "counter:startTimer"(self: HTMLHeadingElement) {
       counterInterval = setInterval(() => {
         ++count;
-        compose(counterColor(count), setText(`${count}`))(self);
+        updateCount(count)(self)
       }, 1000);
     },
     "counter:stopTimer"(self: HTMLHeadingElement) {
       count = 0;
       clearInterval(counterInterval);
-      compose(counterColor(count), setText("0"))(self);
+      updateCount(count)(self)
     },
   },
 });
